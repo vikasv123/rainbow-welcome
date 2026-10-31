@@ -1,0 +1,149 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+
+    font-family: Arial, sans-serif;
+
+    background: linear-gradient(
+        135deg,
+        #fff0f6,
+        #e9f7ff,
+        #fff8df
+    );
+}
+
+.welcome-card {
+    width: 100%;
+    max-width: 520px;
+
+    padding: 30px 24px;
+
+    text-align: center;
+
+    background: white;
+
+    border-radius: 25px;
+
+    box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+}
+
+.rainbow {
+    height: 13px;
+    border-radius: 20px;
+    margin-bottom: 25px;
+
+    background: linear-gradient(
+        90deg,
+        #ff4b4b,
+        #ff9f43,
+        #f9ca24,
+        #6ab04c,
+        #22a6b3,
+        #686de0,
+        #be2edd
+    );
+}
+
+.school-icon {
+    font-size: 60px;
+    margin-bottom: 12px;
+}
+
+.small-heading {
+    color: #777;
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+h1 {
+    color: #d64c89;
+    font-size: 38px;
+    margin-bottom: 15px;
+}
+
+h2 {
+    color: #36899a;
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+
+h3 {
+    color: #36899a;
+    font-size: 19px;
+    margin-bottom: 20px;
+}
+
+.message {
+    background: #fff3f8;
+    padding: 20px;
+    border-radius: 16px;
+}
+
+.message p {
+    color: #444;
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 13px;
+}
+
+.message .highlight {
+    color: #c34d83;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+button {
+    margin-top: 22px;
+    padding: 14px 25px;
+
+    border: none;
+    border-radius: 30px;
+
+    background: #d64c89;
+    color: white;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+button:hover {
+    background: #b83d75;
+    transform: scale(1.04);
+}
+
+#thanksMessage {
+    display: none;
+    color: #36899a;
+    font-weight: bold;
+    margin-top: 18px;
+}
+
+.footer {
+    color: #777;
+    font-size: 14px;
+    line-height: 1.7;
+    margin-top: 25px;
+}
+
+@media (max-width: 400px) {
+    .welcome-card {
+        padding: 24px 17px;
+    }
+
+    h1 {
+        font-size: 31px;
+    }
+}
