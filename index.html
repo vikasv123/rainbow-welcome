@@ -4,65 +4,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Welcome | Rainbow World School</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <div class="welcome-card">
+    <!-- BALLOON INTRO SCREEN -->
+    <section id="balloonScreen">
 
-        <div class="rainbow"></div>
+        <div class="intro-content">
+            <div class="logo-frame">
+            <img src="logo.jpg"
+                 alt="Rainbow World School Logo"
+                 onerror="this.style.display='none'">
+            </div>
+            
+            <h1>RAINBOW WORLD SCHOOL</h1>
+            <h2>BARI BHAWARNA</h2>
+            
+            <div class="rainbow">🌈</div>
+            <p class="intro-small">YOU ARE SPECIAL TO US</p>
+            <div class="grand-welcome">
+                A GRAND WELCOME!
+            </div>
 
-        <div class="school-icon">🌈</div>
+            <p class="intro-message">
+                Dear Parents, This Celebration Is For You! 💖
+            </p>
 
-        <p class="small-heading">RAINBOW WORLD SCHOOL PRESENTS</p>
+            <p class="intro-footer">
+                🎈 Let's Make Beautiful Memories Together! 🎈
+            </p>
+        </div>
 
-        <h1>A Warm Welcome!</h1>
+        <div id="balloonContainer"></div>
+        <div id="confettiContainer"></div>
 
-        <h2>Dear Parents,</h2>
+    </section>
 
-        <h3>Rainbow World School, Bhawarna</h3>
 
-        <div class="message">
+    <!-- MAIN WELCOME CARD -->
+    <main id="welcomeCard">
+
+        <div class="card-decoration decoration-one">✦</div>
+        <div class="card-decoration decoration-two">♡</div>
+        <div class="card-decoration decoration-three">✿</div>
+        <div class="card-decoration decoration-four">✦</div>
+
+        <div class="top-ribbon">
+            ✨ A SPECIAL DAY TO CELEBRATE ✨
+        </div>
+
+        <div class="logo-frame">
+            <img src="logo.jpg"
+                 alt="Rainbow World School Logo"
+                 onerror="this.style.display='none'">
+        </div>
+
+        <h1 class="school-name">RAINBOW WORLD SCHOOL</h1>
+        <p class="school-location">BARI BHAWARNA</p>
+
+        <div class="rainbow-line">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <p class="dear-parents">Dear Parents,</p>
+
+        <h2 class="welcome-heading">
+            A Warm Welcome!
+        </h2>
+
+        <p class="welcome-subtitle">
+            Your presence makes this celebration even more special.
+        </p>
+
+        <div class="message-box">
+            <p>
+                Thank you for being an important part of our school family
+                and for always encouraging your children to learn, grow
+                and shine.
+            </p>
 
             <p>
-                Your presence makes this celebration
-                even more special.
+                Let's celebrate their achievements and create beautiful
+                memories together!
             </p>
+        </div>
 
-            <p>
-                Thank you for being an important part
-                of our school family and for always
-                encouraging our children to learn,
-                grow and shine.
-            </p>
+        <div class="heart-message">
+            You are not just our guests,<br>
+            you are a part of our family! ❤️
+        </div>
 
-            <p class="highlight">
-                Let's celebrate their achievements
-                and create beautiful memories together!
-            </p>
-
+        <div class="card-flowers">
+            🌸 🌼 🌺 🌷 🌸
         </div>
 
         <button id="celebrateBtn">
             Celebrate With Us! 🎉
         </button>
 
-        <p id="thanksMessage">
-            Thank you for joining us! 💐
-        </p>
-
-        <div class="footer">
-            With warm regards,<br>
-            <strong>Rainbow World School</strong>
+        <div id="thanksMessage">
+            <h2>Thank You for Joining Us! 💐</h2>
+            <p>Your presence means the world to us! ❤️</p>
         </div>
 
-    </div>
+        <div id="heartContainer"></div>
+
+        <div class="card-footer">
+            WITH LOVE AND WARM REGARDS<br>
+            <strong>RAINBOW WORLD SCHOOL FAMILY</strong>
+        </div>
+
+    </main>
 
     <script src="script.js"></script>
-
 </body>
 </html>
