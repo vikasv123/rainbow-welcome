@@ -7,143 +7,475 @@
 
 body {
     min-height: 100vh;
+    font-family: 'Trebuchet MS', Arial, sans-serif;
+    background: linear-gradient(135deg, #ffb6d9, #c7b8ff, #a9e9ff, #c4ffd9);
+    overflow-x: hidden;
+}
+
+/* INTRO SCREEN */
+
+#balloonScreen {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
-
-    font-family: Arial, sans-serif;
-
-    background: linear-gradient(
-        135deg,
-        #fff0f6,
-        #e9f7ff,
-        #fff8df
-    );
-}
-
-.welcome-card {
-    width: 100%;
-    max-width: 520px;
-
-    padding: 30px 24px;
-
     text-align: center;
-
-    background: white;
-
-    border-radius: 25px;
-
-    box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    background:
+        radial-gradient(circle at top left, #ffe0f0, transparent 45%),
+        linear-gradient(135deg, #b8eaff, #f9c8e7, #fff0bd, #c9f7d5);
+    transition: opacity 1.5s ease, visibility 1.5s ease;
 }
 
-.rainbow {
-    height: 13px;
-    border-radius: 20px;
-    margin-bottom: 25px;
-
-    background: linear-gradient(
-        90deg,
-        #ff4b4b,
-        #ff9f43,
-        #f9ca24,
-        #6ab04c,
-        #22a6b3,
-        #686de0,
-        #be2edd
-    );
+#balloonScreen.hide {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 }
 
-.school-icon {
-    font-size: 60px;
-    margin-bottom: 12px;
+.intro-content {
+    position: relative;
+    z-index: 3;
+    width: 95%;
+    padding: 20px;
+    animation: introAppear 1.5s ease;
 }
 
-.small-heading {
-    color: #777;
-    font-size: 11px;
-    letter-spacing: 2px;
-    margin-bottom: 12px;
+@keyframes introAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
-h1 {
-    color: #d64c89;
-    font-size: 38px;
+.intro-small {
+    color: #8b329e;
+    font-weight: bold;
+    letter-spacing: 4px;
+    font-size: 14px;
     margin-bottom: 15px;
 }
 
-h2 {
-    color: #36899a;
-    font-size: 22px;
-    margin-bottom: 12px;
+.intro-content h1 {
+    font-size: clamp(27px, 6vw, 55px);
+    font-weight: 900;
+    color: #ed3d8c;
+    text-shadow: 2px 3px 0 white;
 }
 
-h3 {
-    color: #36899a;
-    font-size: 19px;
-    margin-bottom: 20px;
+.intro-content h2 {
+    color: #5838ad;
+    letter-spacing: 5px;
+    font-size: clamp(17px, 3vw, 25px);
+    margin-top: 8px;
 }
 
-.message {
-    background: #fff3f8;
-    padding: 20px;
-    border-radius: 16px;
+.rainbow {
+    font-size: 65px;
+    margin: 15px 0;
+    animation: rainbowBounce 2s infinite ease-in-out;
 }
 
-.message p {
-    color: #444;
-    font-size: 16px;
-    line-height: 1.7;
-    margin-bottom: 13px;
+@keyframes rainbowBounce {
+    50% {
+        transform: translateY(-12px);
+    }
 }
 
-.message .highlight {
-    color: #c34d83;
-    font-weight: bold;
-    margin-bottom: 0;
-}
-
-button {
-    margin-top: 22px;
-    padding: 14px 25px;
-
-    border: none;
-    border-radius: 30px;
-
-    background: #d64c89;
+.grand-welcome {
+    display: inline-block;
+    padding: 14px 30px;
+    border-radius: 50px;
+    background: linear-gradient(90deg, #ff599d, #ffb347, #8c68ec);
     color: white;
-
-    font-size: 16px;
-    font-weight: bold;
-
-    cursor: pointer;
+    font-weight: 900;
+    font-size: clamp(20px, 4vw, 34px);
+    box-shadow: 0 8px 25px #a34a8b55;
 }
 
-button:hover {
-    background: #b83d75;
-    transform: scale(1.04);
+.intro-message {
+    margin-top: 20px;
+    color: #56316e;
+    font-size: clamp(16px, 3vw, 22px);
+    font-weight: bold;
+}
+
+.intro-footer {
+    margin-top: 14px;
+    color: #793f9a;
+    font-weight: bold;
+}
+
+/* BALLOONS */
+
+#balloonContainer {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.balloon {
+    position: absolute;
+    bottom: -180px;
+    border-radius: 50% 50% 45% 45%;
+    box-shadow: inset -8px -8px 15px #00000020,
+                inset 6px 6px 12px #ffffff80,
+                0 5px 15px #00000015;
+    animation: balloonFly linear forwards;
+    will-change: transform;
+}
+
+.balloon::before {
+    content: "";
+    position: absolute;
+    width: 12%;
+    height: 12%;
+    bottom: -5px;
+    left: 44%;
+    background: inherit;
+    transform: rotate(45deg);
+}
+
+.balloon::after {
+    content: "";
+    position: absolute;
+    width: 1.5px;
+    height: 75px;
+    background: #66666670;
+    top: 100%;
+    left: 50%;
+}
+
+@keyframes balloonFly {
+    0% {
+        transform: translate3d(0, 0, 0) rotate(-12deg);
+        opacity: 0;
+    }
+
+    8% {
+        opacity: 1;
+    }
+
+    25% {
+        transform: translate3d(25px, -30vh, 0) rotate(12deg);
+    }
+
+    50% {
+        transform: translate3d(-25px, -65vh, 0) rotate(-12deg);
+    }
+
+    75% {
+        transform: translate3d(20px, -100vh, 0) rotate(12deg);
+    }
+
+    100% {
+        transform: translate3d(-15px, -145vh, 0) rotate(-10deg);
+        opacity: 0;
+    }
+}
+
+/* CONFETTI */
+
+#confettiContainer {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.confetti {
+    position: absolute;
+    top: -20px;
+    animation: confettiFall linear forwards;
+}
+
+@keyframes confettiFall {
+    to {
+        transform: translateY(110vh) rotate(900deg);
+        opacity: 0;
+    }
+}
+
+/* WELCOME CARD */
+
+#welcomeCard {
+    position: relative;
+    display: none;
+    width: min(90%, 680px);
+    margin: 45px auto;
+    padding: 30px 35px;
+    text-align: center;
+    overflow: hidden;
+    border-radius: 32px;
+    border: 5px solid white;
+    background:
+        radial-gradient(circle at top left, #fff0b8, transparent 35%),
+        radial-gradient(circle at bottom right, #ffd5ec, transparent 40%),
+        linear-gradient(145deg, #fff9e9, #f4eaff, #e5faff);
+    box-shadow: 0 20px 55px #623d9950;
+    animation: cardAppear 1.3s ease forwards;
+}
+
+#welcomeCard.show {
+    display: block;
+}
+
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(60px) scale(0.85);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.top-ribbon {
+    display: inline-block;
+    padding: 9px 20px;
+    border-radius: 30px;
+    background: linear-gradient(90deg, #ff78aa, #ffa64d, #a17cf4);
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 18px;
+}
+
+.logo-frame {
+    width: 115px;
+    height: 115px;
+    margin: 0 auto 12px;
+    background: white;
+    border: 4px solid #ff9fc9;
+    border-radius: 50%;
+    padding: 7px;
+    box-shadow: 0 5px 18px #a44a8a35;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.logo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.school-name {
+    color: #e64c91;
+    font-size: clamp(20px, 4vw, 30px);
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.school-location {
+    color: #7550bb;
+    font-weight: bold;
+    letter-spacing: 4px;
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.rainbow-line {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    margin: 18px auto;
+}
+
+.rainbow-line span {
+    width: 35px;
+    height: 6px;
+    border-radius: 10px;
+}
+
+.rainbow-line span:nth-child(1) { background: #ff4e72; }
+.rainbow-line span:nth-child(2) { background: #ff9d42; }
+.rainbow-line span:nth-child(3) { background: #ffe04c; }
+.rainbow-line span:nth-child(4) { background: #5bcf83; }
+.rainbow-line span:nth-child(5) { background: #46bce8; }
+.rainbow-line span:nth-child(6) { background: #7473e8; }
+.rainbow-line span:nth-child(7) { background: #c16cda; }
+
+.dear-parents {
+    color: #7950a5;
+    font-size: 21px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.welcome-heading {
+    font-size: clamp(30px, 5vw, 43px);
+    margin: 8px 0;
+    background: linear-gradient(90deg, #ed5795, #9861dc, #328fd2);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.welcome-subtitle {
+    color: #765c87;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.message-box {
+    margin: 22px 0;
+    padding: 20px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #ffe1ed, #e9e0ff, #dff7ff);
+    border: 2px dashed #d99acb;
+    color: #5c4771;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.message-box p + p {
+    margin-top: 12px;
+}
+
+.heart-message {
+    color: #e34d8e;
+    font-size: 19px;
+    line-height: 1.6;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.card-flowers {
+    font-size: 25px;
+    margin: 15px 0;
+}
+
+#celebrateBtn {
+    border: none;
+    outline: none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    color: white;
+    background: linear-gradient(90deg, #ff5897, #ff9b50, #9c64e8);
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 8px 20px #d35c9b50;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+#celebrateBtn:hover {
+    transform: scale(1.07);
+    box-shadow: 0 10px 25px #d35c9b80;
 }
 
 #thanksMessage {
     display: none;
-    color: #36899a;
-    font-weight: bold;
-    margin-top: 18px;
+    margin-top: 22px;
+    color: #d84991;
+    animation: introAppear 0.8s ease;
 }
 
-.footer {
-    color: #777;
-    font-size: 14px;
-    line-height: 1.7;
+#thanksMessage h2 {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+#thanksMessage p {
+    color: #7650a3;
+}
+
+#heartContainer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.floating-heart {
+    position: absolute;
+    bottom: 0;
+    font-size: 25px;
+    animation: heartFly 3s ease-out forwards;
+}
+
+@keyframes heartFly {
+    to {
+        transform: translateY(-450px) rotate(30deg) scale(1.8);
+        opacity: 0;
+    }
+}
+
+.card-decoration {
+    position: absolute;
+    color: #f5a2c8;
+    font-size: 35px;
+    pointer-events: none;
+}
+
+.decoration-one { top: 130px; left: 15px; }
+.decoration-two { top: 250px; right: 15px; font-size: 45px; }
+.decoration-three { bottom: 170px; left: 20px; }
+.decoration-four { bottom: 80px; right: 20px; }
+
+.card-footer {
     margin-top: 25px;
+    padding-top: 18px;
+    border-top: 2px dashed #e7acd0;
+    color: #9a6aa9;
+    font-size: 12px;
+    letter-spacing: 1px;
+    line-height: 1.8;
 }
 
-@media (max-width: 400px) {
-    .welcome-card {
-        padding: 24px 17px;
+.card-footer strong {
+    color: #e34e91;
+    font-size: 14px;
+}
+
+/* MOBILE SCREEN */
+
+@media (max-width: 600px) {
+
+    #welcomeCard {
+        width: 93%;
+        margin: 20px auto;
+        padding: 25px 18px;
+        border-radius: 25px;
     }
 
-    h1 {
-        font-size: 31px;
+    .intro-small {
+        letter-spacing: 2px;
+    }
+
+    .rainbow {
+        font-size: 50px;
+    }
+
+    .message-box {
+        padding: 16px;
+        font-size: 14px;
+    }
+
+    .welcome-subtitle {
+        font-size: 14px;
+    }
+
+    .card-decoration {
+        font-size: 25px;
+    }
+
+    .logo-frame {
+        width: 100px;
+        height: 100px;
     }
 }
